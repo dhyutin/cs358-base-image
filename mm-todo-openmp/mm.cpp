@@ -11,6 +11,7 @@
 #include "alloc2D.h"
 #include "mm.h"
 
+# include <omp.h>
 using namespace std;
 
 
@@ -41,6 +42,7 @@ double** MatrixMultiply(double** const A, double** const B, int N, int T)
   //
   // For every row i of A and column j of B:
   //
+  #pragma omp parallel for num_threads(T)
   for (int i = 0; i < N; i++)
   {
     for (int j = 0; j < N; j++)
